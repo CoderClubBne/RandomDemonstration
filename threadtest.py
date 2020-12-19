@@ -13,15 +13,16 @@ def thread_func(q):
     print("Exiting second thread")
 
 theQ = queue.Queue()
-# Main loop
 t = threading.Thread(target=thread_func, args=(theQ,))
 t.start()
+
+# Main loop
 print("Main thread start")
 inputValue = ""
 while inputValue != "quit":
     inputValue = input("Type an item: ")
     theQ.put(inputValue)
 print("Main thread finished")
-t.join()
 
+t.join()
 print("Program finished")
